@@ -1,0 +1,468 @@
+:root {
+  --primary-pink: #f8b5c6;
+  --secondary-pink: #fde2e7;
+  --warm-beige: #f9f1e6;
+  --soft-yellow: #fef9e7;
+  --text-dark: #5d4037;
+  --text-light: #8d6e63;
+  --accent-gold: #daa520;
+  --white: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background: linear-gradient(
+    135deg,
+    var(--soft-yellow),
+    var(--secondary-pink)
+  );
+  overflow-x: hidden;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== FLOATING HEARTS ANIMATION ===== */
+.hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heart {
+  position: absolute;
+  color: var(--primary-pink);
+  font-size: 20px;
+  animation: float 6s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-20px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(135deg, var(--warm-beige), var(--secondary-pink));
+  background: url('../images/Layout2535_05.jpg') center/contain no-repeat;
+}
+
+.hero-content h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px var(--shadow);
+}
+
+.hero-content .tagline {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: var(--text-light);
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+/* ===== COUNTDOWN ===== */
+.countdown-section {
+  padding: 80px 0;
+  background: var(--white);
+  position: relative;
+}
+
+.countdown-title {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--text-dark);
+  margin-bottom: 40px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.countdown-item {
+  background: linear-gradient(135deg, var(--primary-pink), var(--accent-gold));
+  color: var(--white);
+  padding: 20px;
+  border-radius: 15px;
+  min-width: 100px;
+  box-shadow: 0 10px 30px var(--shadow);
+}
+
+.countdown-number {
+  font-size: 2.5rem;
+  font-weight: 600;
+  display: block;
+}
+
+.countdown-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== INFO SECTIONS ===== */
+.info-section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.info-section:nth-child(even) {
+  background: var(--secondary-pink);
+}
+
+.section-title {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--text-dark);
+  margin-bottom: 40px;
+}
+
+.info-card {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px var(--shadow);
+  margin-bottom: 30px;
+}
+
+.info-card h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.8rem;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.info-card p {
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+/* ===== GALLERY ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  box-shadow: 0 10px 30px var(--shadow);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, var(--primary-pink), var(--accent-gold));
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px var(--shadow);
+  margin: 10px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--shadow);
+}
+
+/* ===== RSVP FORM ===== */
+.rsvp-form {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px var(--shadow);
+  max-width: 500px;
+  margin: 40px auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--secondary-pink);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-pink);
+}
+
+/* ===== MUSIC CONTROL ===== */
+.music-control {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-pink), var(--accent-gold));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 5px 20px var(--shadow);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.music-control:hover {
+  transform: scale(1.1);
+}
+
+.music-control span {
+  color: var(--white);
+  font-size: 1.5rem;
+}
+
+/* ===== TOAST NOTIFICATION ===== */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--primary-pink), var(--accent-gold));
+  color: var(--white);
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px var(--shadow);
+  z-index: 1001;
+  transform: translateX(400px);
+  transition: transform 0.3s ease;
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 40px 25px;
+    margin: 0 15px;
+  }
+
+  .countdown {
+    gap: 15px;
+  }
+
+  .countdown-item {
+    min-width: 80px;
+    padding: 15px;
+  }
+
+  .info-card {
+    padding: 25px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== ENHANCED TOAST NOTIFICATIONS ===== */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: var(--white);
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px var(--shadow);
+    z-index: 1001;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    min-width: 280px;
+    max-width: 400px;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+/* Toast Success - Xanh lá */
+.toast.toast-success {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+}
+
+.toast.toast-success::before {
+    content: '✅ ';
+}
+
+/* Toast Error - Đỏ */
+.toast.toast-error {
+    background: linear-gradient(135deg, #f44336, #da190b);
+}
+
+.toast.toast-error::before {
+    content: '❌ ';
+}
+
+/* Toast Warning - Vàng cam */
+.toast.toast-warning {
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+}
+
+.toast.toast-warning::before {
+    content: '⚠️ ';
+}
+
+/* Toast Default - Gradient gốc */
+.toast:not(.toast-success):not(.toast-error):not(.toast-warning) {
+    background: linear-gradient(135deg, var(--primary-pink), var(--accent-gold));
+}
+
+/* Animation cho toast */
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+.toast.show {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Progress bar cho toast */
+.toast::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    width: 100%;
+    transform-origin: left;
+    animation: progress 4s linear;
+}
+
+@keyframes progress {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+    }
+}
+
+/* Responsive toast */
+@media (max-width: 480px) {
+    .toast {
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+        max-width: none;
+        transform: translateY(-100px);
+    }
+    
+    .toast.show {
+        transform: translateY(0);
+    }
+}
