@@ -18,7 +18,7 @@ const CONFIG = {
     "https://maps.google.com/maps?q=Nguyen+Van+Qua,+District+12,+Ho+Chi+Minh+City",
 
   // URL nhạc nền (thay bằng link nhạc của bạn)
-  musicUrl: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
+  musicUrl: "./assets/music/một-đời.wav",
 
   // URL Google Apps Script Web App (sau khi deploy)
   googleSheetsUrl: "https://script.google.com/macros/s/AKfycbxB9Dp7Toh6MFJovZ4-Ycr4I9gqKwQRwnLTyLlB2YF7mm7YM22LBkYu6cDT55GvwzVX/exec",
@@ -32,8 +32,6 @@ const CONFIG = {
 
 // ===== WAIT FOR DOM TO BE FULLY LOADED =====
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("🎊 DOM loaded, initializing wedding invitation...");
-
   // Initialize all functionality after DOM is ready
   initCountdown();
   initFloatingHearts();
@@ -44,8 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
   initSmoothScrolling();
   initAccessibility();
   initTitle();
-
-  console.log("✅ Wedding invitation initialized successfully!");
 });
 
 // ===== COUNTDOWN FUNCTIONALITY =====
@@ -641,3 +637,8 @@ window.WeddingRSVP = {
         console.table(JSON.parse(localStorage.getItem('wedding-rsvps') || '[]'));
     }
 };
+
+// ===== DISABLE RIGHT-CLICK =====
+document.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+});
