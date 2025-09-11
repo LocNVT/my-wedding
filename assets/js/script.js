@@ -642,3 +642,66 @@ window.WeddingRSVP = {
 document.addEventListener("contextmenu", (e) => {
   e.preventDefault();
 });
+
+// ===== ALBUM MODAL FUNCTIONALITY =====
+document.addEventListener("DOMContentLoaded", function () {
+  const albumItems = document.querySelectorAll(".album-item img");
+  const modal = document.getElementById("albumModal");
+  const modalImg = document.getElementById("modalImage");
+  const modalCaption = document.getElementById("modalCaption");
+  const closeBtn = document.querySelector(".album-modal .close");
+  const prevBtn = document.querySelector(".album-modal .prev");
+  const nextBtn = document.querySelector(".album-modal .next");
+
+  let currentIndex = 0;
+
+  // Hàm hiển thị ảnh trong modal
+  function showImage(index) {
+    if (index < 0) index = albumItems.length - 1;
+    if (index >= albumItems.length) index = 0;
+    currentIndex = index;
+    modalImg.src = albumItems[currentIndex].src;
+    modalCaption.innerText = albumItems[currentIndex].alt;
+  }
+
+  // Click ảnh trong album
+  albumItems.forEach((img, i) => {
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+      showImage(i);
+    });
+  });
+
+  // Đóng modal
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  // Next/Prev
+  nextBtn.addEventListener("click", () => {
+    showImage(currentIndex + 1);
+  });
+
+  prevBtn.addEventListener("click", () => {
+    showImage(currentIndex - 1);
+  });
+
+  // Đóng khi click ra ngoài
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  // Dùng phím mũi tên trái/phải
+  document.addEventListener("keydown", (e) => {
+    if (modal.style.display === "block") {
+      if (e.key === "ArrowRight") showImage(currentIndex + 1);
+      if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+      if (e.key === "Escape") modal.style.display = "none";
+    }
+  });
+});
+
+
+

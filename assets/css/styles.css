@@ -547,7 +547,7 @@ body {
 
 .timeline-item img {
   width: 100%;
-  height: 300px;
+  height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
@@ -557,6 +557,106 @@ body {
   font-size: 16px;
   color: #444;
 }
+
+.album-section {
+  padding: 60px 20px;
+  background: #fafafa;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.album-item {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.album-item img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s ease;
+}
+
+.album-item:hover img {
+  transform: scale(1.08);
+}
+
+.album-item .caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  padding: 6px 0;
+}
+
+/* Popup Modal */
+.album-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  text-align: center;
+}
+
+.album-modal img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 12px;
+}
+
+.album-modal .close {
+  position: absolute;
+  top: 20px; right: 40px;
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+#modalCaption {
+  margin-top: 12px;
+  color: #eee;
+  font-size: 16px;
+}
+
+.album-modal .prev,
+.album-modal .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  margin-top: -22px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 32px;
+  transition: 0.3s;
+  user-select: none;
+}
+
+.album-modal .prev {
+  left: 20px;
+}
+
+.album-modal .next {
+  right: 20px;
+}
+
+.album-modal .prev:hover,
+.album-modal .next:hover {
+  color: #f1c40f;
+}
+
 
 
 
