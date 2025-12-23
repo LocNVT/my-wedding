@@ -4,222 +4,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thiệp Cưới - Ý Vy ❤️ Thiện Lộc</title>
-
-    <!-- Google Fonts -->
+    <title>Thiệp Cưới - Ý Vy & Thiện Lộc</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap"
         rel="stylesheet">
-    <link href="./assets/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
 
-    <script src="./assets/js/script.js"></script>
+    <script src="assets/js/script.js" defer></script>
 </head>
 
 <body>
     <!-- Floating Hearts -->
-    <div class="hearts-container" id="heartsContainer"></div>
+    <div class="floating-hearts" id="floatingHearts"></div>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-content fade-in">
-            <!-- <h1 id="brideGroomTitle">Ý Vy ❤️ Thiện Lộc</h1> -->
-            <h1 id="brideGroomTitle">Tên cô dâu và chú rể</h1>
+    <section class="hero-banner">
+        <div class="hero-banner fade-in">
+            <h1 id="brideGroomTitle">Thiện Lộc & Ý Vy</h1>
             <p class="tagline">"Tình yêu đích thực là khi hai trái tim hòa nhịp thành một"</p>
         </div>
     </section>
 
-    <!-- Countdown Section -->
-    <section class="countdown-section">
-        <div class="container text-center">
-            <h2 class="countdown-title fade-in">Đếm ngược đến ngày trọng đại</h2>
-            <div class="countdown fade-in" id="countdown">
-                <div class="countdown-item">
-                    <span class="countdown-number" id="days">00</span>
-                    <span class="countdown-label">Ngày</span>
+    <section class="invitation-section">
+        <div class="invitation-section-container">
+            <!-- <div class="hero-title">Ý Vy & Thiện Lộc</div>
+            <p class="tagline">"Tình yêu đích thực là khi hai trái tim hòa nhịp thành một"</p> -->
+
+            <div class="save-the-date">
+                <h2>SAVE <span class="the">the</span> DATE</h2>
+                <div class="date">January 24, 2026</div>
+            </div>
+
+            <p class="invitation-text">
+                Trân trọng kính mời Quý Khách<br>
+                tới dự buổi tiệc mừng lễ thành hôn của hai chúng tôi
+            </p>
+
+            <div class="couple-names">
+                <h3>Nguyễn Viết Thiện Lộc</h3>
+                <div class="and">và</div>
+                <h3>Hoàng Lê Ý Vy</h3>
+            </div>
+
+            <div class="wedding-details">
+                <div class="detail-item">
+                    <h4>NGÀY</h4>
+                    <p>24-01-2026</p>
                 </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="hours">00</span>
-                    <span class="countdown-label">Giờ</span>
+                <div class="detail-item">
+                    <h4>GIỜ</h4>
+                    <p>18:00</p>
                 </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="minutes">00</span>
-                    <span class="countdown-label">Phút</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="seconds">00</span>
-                    <span class="countdown-label">Giây</span>
-                </div>
+            </div>
+
+            <div class="venue-info">
+                <!-- <p style="font-style: italic; margin-bottom: 10px;">Ngày 24 Tháng 01 năm Bính Ngọ</p> -->
+                <p><strong>Trung tâm Hội nghị tiệc cưới Đông Phương</strong></p>
+                <p>Sảnh Phượng Vĩ</p>
+                <p style="font-size: 0.9rem; color: #999;">491 Nguyễn Văn Quá, Đông Hưng Thuận, Quận 12, HCM</p>
             </div>
         </div>
     </section>
 
-    <!-- Wedding Info -->
-    <section class="info-section">
-        <div class="container text-center">
-            <h2 class="section-title fade-in">Thông tin lễ cưới</h2>
-            <div class="info-card fade-in">
-                <h3>🎉 Lễ Thành Hôn</h3>
-                <p><strong>Thời gian:</strong> 06:00 PM</p>
-                <p><strong>Ngày:</strong> Thứ bảy, 24 tháng 01 năm 2026</p>
-                <p><strong>Địa điểm:</strong> Nhà hàng tiệc cưới Đông Phương 4</p>
-                <p><strong>Địa chỉ:</strong> Đường Nguyễn Văn Quá, TP.HCM</p>
+    <!-- Calendar Section -->
+    <section class="calendar-section">
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <h2>Tháng 1</h2>
+                <p class="year">2025</p>
             </div>
-            <div class="info-card fade-in">
-                <h3>🏠 Thông tin thêm</h3>
-                <p><strong>Nhà gái:</strong> TP.HCM</p>
-                <p><strong>Nhà trai:</strong> TP.HCM</p>
-                <p><strong>Dress code:</strong> Trang phục lịch sự</p>
-            </div>
-            <a href="https://maps.app.goo.gl/vxQK9tRDNQv6YXGq9" target="_blank" class="btn">📍 Xem bản đồ</a>
-        </div>
-    </section>
+            <div class="calendar-grid">
+                <div class="calendar-day header">M</div>
+                <div class="calendar-day header">T</div>
+                <div class="calendar-day header">W</div>
+                <div class="calendar-day header">T</div>
+                <div class="calendar-day header">F</div>
+                <div class="calendar-day header">S</div>
+                <div class="calendar-day header">S</div>
 
-    <section id="album" class="album-section">
-        <div class="container">
-            <h2 class="section-title text-center">Album cưới</h2>
+                <div class="calendar-day"></div>
+                <div class="calendar-day">1</div>
+                <div class="calendar-day">2</div>
+                <div class="calendar-day">3</div>
+                <div class="calendar-day">4</div>
+                <div class="calendar-day">5</div>
+                <div class="calendar-day">6</div>
 
-            <div class="album-grid">
-                <div class="album-item">
-                    <img src="./assets/images/wedding_album/ART00049.jpg" loading="lazy">
-                    <!-- <div class="caption">Khoảnh khắc bên nhau</div> -->
-                </div>
-                <div class="album-item">
-                    <img src="./assets/images/wedding_album/ART00153.jpg" loading="lazy">
-                </div>
-                <div class="album-item">
-                    <img src="./assets/images/wedding_album/ART00165.jpg" loading="lazy">
-                </div>
-                <div class="album-item">
-                    <img src="./assets/images/wedding_album/ART00262.jpg" loading="lazy">
-                </div>
-                <div class="album-item">
-                    <img src="./assets/images/wedding_album/ART00289.jpg" loading="lazy">
-                </div>
-                <div class="album-item">
-                    <img src="./assets/images/wedding_album/ART00334.jpg" loading="lazy">
-                </div>
-                <div class="album-item">
-                    <img src="./assets/images/wedding_album/ART00435.jpg" loading="lazy">
-                </div>
-                <div class="album-item">
-                    <img src="./assets/images/wedding_album/ART00477.jpg" loading="lazy">
-                </div>
-                <div class="album-item">
-                    <img src="./assets/images/wedding_album/ART00522.jpg" loading="lazy">
-                </div>
-                <div class="album-item">
-                    <img src="./assets/images/wedding_album/ART09009.jpg" loading="lazy">
-                </div>
-                <div class="album-item">
-                    <img src="./assets/images/wedding_album/ART09367.jpg" loading="lazy">
-                </div>
-                <div class="album-item">
-                    <img src="./assets/images/wedding_album/ART09742.jpg" loading="lazy">
-                </div>
+                <div class="calendar-day">7</div>
+                <div class="calendar-day">8</div>
+                <div class="calendar-day">9</div>
+                <div class="calendar-day">10</div>
+                <div class="calendar-day">11</div>
+                <div class="calendar-day">12</div>
+                <div class="calendar-day">13</div>
+
+                <div class="calendar-day">14</div>
+                <div class="calendar-day">15</div>
+                <div class="calendar-day">16</div>
+                <div class="calendar-day">17</div>
+                <div class="calendar-day">18</div>
+                <div class="calendar-day">19</div>
+                <div class="calendar-day">20</div>
+
+                <div class="calendar-day">21</div>
+                <div class="calendar-day">22</div>
+                <div class="calendar-day">23</div>
+                <div class="calendar-day highlighted">24</div>
+                <div class="calendar-day">25</div>
+                <div class="calendar-day">26</div>
+                <div class="calendar-day">27</div>
+
+                <div class="calendar-day">28</div>
+                <div class="calendar-day">29</div>
+                <div class="calendar-day">30</div>
             </div>
         </div>
     </section>
 
-    <!-- Popup viewer -->
-    <div id="albumModal" class="album-modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modalImage">
-        <div id="modalCaption"></div>
+    <!-- Parents Section -->
+    <section class="parents-section">
+        <div class="parents-container">
+            <div class="parents-header">
+                <!-- <div class="header-icon">👨‍👩‍👧‍👦</div> -->
+                <h2>Gia Đình Hai Bên</h2>
+                <p>Trân trọng giới thiệu</p>
+            </div>
 
-        <!-- Nút chuyển ảnh -->
-        <a class="prev">&#10094;</a>
-        <a class="next">&#10095;</a>
+            <div class="parents-grid">
+                <div class="parent-side groom-side">
+                    <div class="side-icon">🤵</div>
+                    <h3>NHÀ TRAI</h3>
+                    <div class="parent-info">
+                        <!-- <div class="parent-item">
+                            <span class="parent-label">Ba:</span>
+                            <span class="parent-name">Ông Nguyễn Văn A</span>
+                        </div> -->
+                        <div class="parent-item">
+                            <span class="parent-label">Mẹ:</span>
+                            <span class="parent-name">Bà Lê Thị Bạch Mai</span>
+                        </div>
+                    </div>
+                    <div class="decorative-line"></div>
+                </div>
+
+                <div class="heart-divider">
+                    <div class="heart-icon">💕</div>
+                </div>
+
+                <div class="parent-side bride-side">
+                    <div class="side-icon">👰</div>
+                    <h3>NHÀ GÁI</h3>
+                    <div class="parent-info">
+                        <div class="parent-item">
+                            <span class="parent-label">Ba:</span>
+                            <span class="parent-name">Ông Hoàng Đình Nghĩa</span>
+                        </div>
+                        <div class="parent-item">
+                            <span class="parent-label">Mẹ:</span>
+                            <span class="parent-name">Bà Lê Thị Ngọc Vân</span>
+                        </div>
+                    </div>
+                    <div class="decorative-line"></div>
+                </div>
+            </div>
+
+            <div class="blessing-text">
+                <p>"Hai gia đình trở thành một, cùng chung niềm hạnh phúc"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <!-- <section class="timeline-section">
+        <div class="timeline-header">
+            <div class="timeline-icon">💍</div>
+            <h2>Timeline</h2>
+            <p class="time">11:30 AM<br>Lễ Cưới</p>
+        </div>
+        <div class="timeline-content">
+            <p>Chương trình chi tiết sẽ được cập nhật</p>
+        </div>
+    </section> -->
+
+    <!-- Album Section -->
+    <div class="album-section">
+        <h3>Album Hình Cưới</h3>
+        <section class="slider-section">
+            <div class="slider-container">
+                <div class="slide active"><img src="./assets/images/wedding_album/ART00049.webp" alt="" /></div>
+                <div class="slide"><img src="./assets/images/wedding_album/ART00165.webp" alt="" /></div>
+                <div class="slide"><img src="./assets/images/wedding_album/ART00262.webp" alt="" /></div>
+                <div class="slide"><img src="./assets/images/wedding_album/ART00289.webp" alt="" /></div>
+                <div class="slide"><img src="./assets/images/wedding_album/ART00435.webp" alt="" /></div>
+                <div class="slide"><img src="./assets/images/wedding_album/ART09009.webp" alt="" /></div>
+
+                <button class="nav-btn prev">❮</button>
+                <button class="nav-btn next">❯</button>
+
+                <div class="dots"></div>
+            </div>
+        </section>
     </div>
 
-
-    <!-- Invitation Message -->
-    <section class="info-section">
-        <div class="container text-center">
-            <h2 class="section-title fade-in">Lời mời</h2>
-            <div class="info-card fade-in">
-                <p style="font-size: 1.1rem; line-height: 1.8;">
-                    Kính mời Quý khách đến dự tiệc cưới của chúng tôi.
-                    Sự hiện diện của Quý khách sẽ là niềm vinh hạnh và
-                    niềm vui lớn cho gia đình chúng tôi trong ngày trọng đại này.
-                    Chúng tôi rất mong được đón tiếp và chia sẻ những khoảnh khắc
-                    hạnh phúc cùng tất cả mọi người.
-                </p>
-            </div>
+    <!-- Album Modal -->
+    <div class="album-modal" id="albumModal">
+        <span class="modal-close">&times;</span>
+        <button class="modal-prev">❮</button>
+        <button class="modal-next">❯</button>
+        <div class="modal-content">
+            <div class="modal-image" id="modalImage">📸</div>
+            <p class="modal-caption" id="modalCaption">Ảnh cưới</p>
         </div>
-    </section>
+    </div>
 
-    <!-- Gallery -->
-    <section class="info-section">
-        <div class="container">
-            <h2 class="section-title fade-in text-center">Kỷ niệm của chúng tôi</h2>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <img src="./assets/images/2015.jpg?w=600&h=400&fit=crop" alt="Ảnh cưới 1" loading="lazy">
-                    <p class="caption">2015</p>
+    <!-- Profiles Section -->
+    <section class="profiles-section">
+        <div class="profile-grid">
+            <div class="profile-card">
+                <div class="profile-photo"><img src="./assets/images/wedding_album/ART09120.webp" alt="Album Image"
+                        style='height: 100%; width: 100%; object-fit: contain'></div>
+                <div class="profile-info">
+                    <p class="role">Cô dâu</p>
+                    <h3>Ý Vy</h3>
                 </div>
-                <div class="timeline-item">
-                    <img src="./assets/images/2016.jpg?w=600&h=400&fit=crop" alt="Ảnh cưới 2" loading="lazy">
-                    <p class="caption">2016</p>
-                </div>
-                <div class="timeline-item">
-                    <img src="./assets/images/2017.jpg?w=600&h=400&fit=crop" alt="Ảnh cưới 3" loading="lazy">
-                    <p class="caption">2017</p>
-                </div>
-                <div class="timeline-item">
-                    <img src="./assets/images/2018.jpg?w=600&h=400&fit=crop" alt="Ảnh cưới 1" loading="lazy">
-                    <p class="caption">2018</p>
-                </div>
-                <div class="timeline-item">
-                    <img src="./assets/images/2019.jpg?w=600&h=400&fit=crop" alt="Ảnh cưới 2" loading="lazy">
-                    <p class="caption">2019</p>
-                </div>
-                <div class="timeline-item">
-                    <img src="./assets/images/2020.jpg?w=600&h=400&fit=crop" alt="Ảnh cưới 3" loading="lazy">
-                    <p class="caption">2020</p>
-                </div>
-                <div class="timeline-item">
-                    <img src="./assets/images/2021.jpg?w=600&h=400&fit=crop" alt="Ảnh cưới 1" loading="lazy">
-                    <p class="caption">2021</p>
-                </div>
-                <div class="timeline-item">
-                    <img src="./assets/images/2022.jpg?w=600&h=400&fit=crop" alt="Ảnh cưới 2" loading="lazy">
-                    <p class="caption">2022</p>
-                </div>
-                <div class="timeline-item">
-                    <img src="./assets/images/2023.jpg?w=600&h=400&fit=crop" alt="Ảnh cưới 3" loading="lazy">
-                    <p class="caption">2023</p>
-                </div>
-                <div class="timeline-item">
-                    <img src="./assets/images/2024.jpg?w=600&h=400&fit=crop" alt="Ảnh cưới 1" loading="lazy">
-                    <p class="caption">2024</p>
-                </div>
-                <div class="timeline-item">
-                    <img src="./assets/images/2025.jpg?w=600&h=400&fit=crop" alt="Ảnh cưới 2" loading="lazy">
-                    <p class="caption">2025</p>
+            </div>
+            <div class="profile-card">
+                <div class="profile-photo"><img src="./assets/images/wedding_album/ART09101.webp" alt="Album Image"
+                        style='height: 100%; width: 100%; object-fit: contain'></div>
+                <div class="profile-info">
+                    <p class="role">Chú rể</p>
+                    <h3>Thiện Lộc</h3>
                 </div>
             </div>
         </div>
     </section>
-
-
 
     <!-- RSVP Section -->
-    <section class="info-section">
-        <div class="container text-center">
-            <h2 class="section-title fade-in">Xác nhận tham dự</h2>
-            <form class="rsvp-form fade-in" id="rsvpForm">
+    <section class="rsvp-section">
+        <div class="rsvp-container">
+            <!-- <div class="rsvp-icon">💑</div> -->
+            <h2>Bạn Sẽ Đến Chứ?</h2>
+            <p>
+                Đám cưới của chúng tôi sẽ trọn vẹn với sự hiện diện của quý khách.
+                Vui lòng xác nhận thông tin dự đoán để chúng tôi dễ dàng chuẩn bị
+                tiếp đón mọi cách chu đáo nhất. Trân trọng!
+            </p>
+
+            <form class="rsvp-form" id="rsvpForm">
                 <div class="form-group">
-                    <label for="guestName">Họ và tên *</label>
-                    <input type="text" id="guestName" name="guestName" required>
+                    <label for="name">Tên của Quý khách *</label>
+                    <input type="text" id="name" name="name" placeholder="Họ và tên" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="guestPhone">Số điện thoại *</label>
-                    <input type="tel" id="guestPhone" name="guestPhone" required>
+                    <label for="phone">Số điện thoại</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Số điện thoại">
                 </div>
+
                 <div class="form-group">
-                    <label for="guestCount">Số người tham dự</label>
-                    <select id="guestCount" name="guestCount">
+                    <label for="message">Gửi những lời chúc tốt đẹp nhất</label>
+                    <textarea id="message" name="message" placeholder="Lời chúc của bạn..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests">Quý khách sẽ tham dự chứ?</label>
+                    <select id="guests" name="guests">
+                        <option value="">Vui lòng chọn</option>
                         <option value="1">1 người</option>
                         <option value="2">2 người</option>
                         <option value="3">3 người</option>
@@ -227,58 +277,42 @@
                         <option value="5+">5+ người</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="message">Lời chúc (tùy chọn)</label>
-                    <textarea id="message" name="message" rows="3"
-                        placeholder="Gửi lời chúc đến cô dâu chú rể..."></textarea>
-                </div>
-                <button type="submit" class="btn">💌 Gửi xác nhận</button>
+
+                <button type="submit" class="submit-btn">Gửi xác nhận</button>
             </form>
         </div>
     </section>
 
-    <section class="qr-section">
-        <div class="container text-center">
-            <h2 class="section-title fade-in">📷 Quét mã QR mừng cưới</h2>
-            <p class="fade-in">Quý khách có thể quét mã QR dưới đây để gửi lời chúc và mừng cưới 💝</p>
-
-            <div class="qr-grid fade-in">
-                <!-- QR Chú Rể -->
-                <div class="qr-card">
-                    <!-- <img src="./assets/images/qr-chu-re.jpg" alt="QR Chú Rể" class="qr-img"> -->
-                    <img src="https://img.vietqr.io/image/vietinbank-0764739150-compact.png?addInfo=CHUC%20HAI%20BAN%20MAI%20MAI%20HANH%20PHUC.%20&accountName=NGUYEN%20VIET%20THIEN%20LOC"
-                        alt="VietQR" width="280" height="280" />
-
-                    <h3 class="qr-name">Chú Rể: Nguyễn Viết Thiện Lộc</h3>
-                </div>
-
-                <!-- QR Cô Dâu -->
-                <div class="qr-card">
-                    <img src="https://img.vietqr.io/image/vietinbank-0764739150-compact.png?addInfo=CHUC%20HAI%20BAN%20MAI%20MAI%20HANH%20PHUC.%20&accountName=NGUYEN%20VIET%20THIEN%20LOC"
-                        alt="VietQR" width="280" height="280" />
-                    <h3 class="qr-name">Cô Dâu: Hoàng Lê Ý Vy</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
     <!-- Music Control -->
-    <div class="music-control" id="musicControl" aria-label="Điều khiển nhạc nền">
+    <div class="music-control" id="musicControl" role="button" aria-label="Điều khiển nhạc nền">
         <span id="musicIcon">🎵</span>
     </div>
 
-    <!-- Hidden Audio Element -->
-    <audio id="backgroundMusic" loop>
-        <!-- Thay thế bằng URL nhạc nền của bạn -->
-        <source src="https://www.youtube.com/watch?v=JgTZvDbaTtg&ab_channel=14Casper" type="audio/mpeg">
-    </audio>
+    <!-- Scroll Up Button -->
+    <div class="scroll-up" id="scrollUp">↑</div>
 
-    <!-- Toast Notification -->
+    <!-- Toast -->
     <div class="toast" id="toast">
         <span id="toastMessage">Cảm ơn bạn đã xác nhận tham dự!</span>
     </div>
+
+    <!-- Invitation Envelope -->
+    <!-- <p class="open-invite" id="openInvite">💌 Mở phong bì thư</p>
+
+    <div class="invite-popup" id="invitePopup">
+        <div class="popup-overlay" id="popupOverlay"></div>
+
+        <div class="popup-content">
+            <button class="close-btn" id="closePopup">✕</button>
+
+            <div class="envelope" id="envelope">
+                <div class="flap"></div>
+                <div class="letter">
+                </div>
+            </div>
+        </div>
+    </div> -->
+
 </body>
 
 </html>
