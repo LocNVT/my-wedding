@@ -1,3 +1,6 @@
+# Thêm vào .htaccess để test
+RewriteEngine On
+RewriteRule ^test$ /404.html [R=404,L]
 # Bật RewriteEngine
 RewriteEngine On
 

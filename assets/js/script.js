@@ -1,27 +1,27 @@
 // ===== CONFIGURATION - CHỈNH SỬA THÔNG TIN TẠI ĐÂY =====
 const CONFIG = {
   // Tên cô dâu và chú rể
-  bride: "Ý Vy",
-  groom: "Thiện Lộc",
+  bride: "",
+  groom: "",
 
-  brideGroomTitle: "Ý Vy ❤️ Thiện Lộc",
+  brideGroomTitle: " ❤️ ",
 
   // Ngày giờ cưới (định dạng: YYYY-MM-DDTHH:MM:SS)
   weddingDate: "2026-01-24T17:00:00",
 
   // Địa điểm
   venue: "Nhà hàng tiệc cưới Đông Phương",
-  address: "Nguyễn Văn Quá, Quận 12, TP.HCM",
+  address: "",
 
   // URL Google Maps (thay đổi theo địa chỉ thật)
-  mapUrl:
-    "https://maps.google.com/maps?q=Nguyen+Van+Qua,+District+12,+Ho+Chi+Minh+City",
+  mapUrl: "",
 
   // URL nhạc nền (thay bằng link nhạc của bạn)
-  musicUrl: "./assets/music/một-đời.wav",
+  musicUrl: "./assets/music/Ôm Trọn Thương Yêu - Rum.mp3",
 
   // URL Google Apps Script Web App (sau khi deploy)
-  googleSheetsUrl: "https://script.google.com/macros/s/AKfycbxB9Dp7Toh6MFJovZ4-Ycr4I9gqKwQRwnLTyLlB2YF7mm7YM22LBkYu6cDT55GvwzVX/exec",
+  googleSheetsUrl:
+    "https://script.google.com/macros/s/AKfycbxXD7BwrL9ZHro_FOoTVrKu4hDjT2Uv2J-w8yyLoauR6M8rH4OYe963rkVKXmuibVSl/exec",
 
   // ID Google Sheets (lấy từ URL sheets)
   googleSheetsId: "1UTJaIhmdPYQznCw_i29xrv-7Yv-6LuPxgLs83Dt9OdM",
@@ -30,162 +30,149 @@ const CONFIG = {
   offlineMode: true,
 };
 
-// ===== WAIT FOR DOM TO BE FULLY LOADED =====
-document.addEventListener("DOMContentLoaded", function () {
-  // Initialize all functionality after DOM is ready
-  initCountdown();
-  initFloatingHearts();
-  initScrollAnimations();
-  initMusicControl();
-  initRSVPForm();
-  initLazyLoading();
-  initSmoothScrolling();
-  initAccessibility();
-  initTitle();
-});
+// Floating Hearts Animation
+function createFloatingHearts() {
+  const container = document.getElementById("floatingHearts");
+  const hearts = ["❤️", "💕", "💖", "💗", "💝"];
 
-// ===== COUNTDOWN FUNCTIONALITY =====
-let countdownInterval;
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.left = Math.random() * 100 + "%";
+    heart.style.animationDuration = Math.random() * 5 + 10 + "s";
+    heart.style.animationDelay = Math.random() * 2 + "s";
+    container.appendChild(heart);
 
-function initCountdown() {
-  updateCountdown(); // Initial call
-  countdownInterval = setInterval(updateCountdown, 1000);
+    setTimeout(() => heart.remove(), 15000);
+  }, 800);
 }
 
-function updateCountdown() {
-  const countdownElement = document.getElementById("countdown");
-  if (!countdownElement) {
-    console.warn("Countdown element not found");
-    return;
-  }
-
-  const now = new Date().getTime();
-  const weddingTime = new Date(CONFIG.weddingDate).getTime();
-  const distance = weddingTime - now;
-
-  if (distance < 0) {
-    countdownElement.innerHTML = "<p>Đám cưới đã diễn ra!</p>";
-    clearInterval(countdownInterval);
-    return;
-  }
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  // Check if elements exist before updating
-  const daysEl = document.getElementById("days");
-  const hoursEl = document.getElementById("hours");
-  const minutesEl = document.getElementById("minutes");
-  const secondsEl = document.getElementById("seconds");
-
-  if (daysEl) daysEl.textContent = String(days).padStart(2, "0");
-  if (hoursEl) hoursEl.textContent = String(hours).padStart(2, "0");
-  if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, "0");
-  if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, "0");
-}
-
-// ===== FLOATING HEARTS ANIMATION =====
-let heartsInterval;
-
-function initFloatingHearts() {
-  createHeart(); // Create initial heart
-  heartsInterval = setInterval(createHeart, 3000);
-}
-
-function createHeart() {
-  const heartsContainer = document.getElementById("heartsContainer");
-  if (!heartsContainer) {
-    console.warn("Hearts container not found");
-    return;
-  }
-
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "%";
-  heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-  heart.style.fontSize = Math.random() * 10 + 15 + "px";
-
-  heartsContainer.appendChild(heart);
-
-  // Remove heart after animation
-  setTimeout(() => {
-    if (heart.parentNode) {
-      heart.parentNode.removeChild(heart);
-    }
-  }, 6000);
-}
-
-// ===== SCROLL ANIMATIONS =====
-function initScrollAnimations() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, observerOptions);
-
-  // Observe all elements with fade-in class
-  const fadeElements = document.querySelectorAll(".fade-in");
-  fadeElements.forEach((el) => observer.observe(el));
-}
-
-// ===== MUSIC CONTROL =====
+// Music Control with Auto-play
 let isPlaying = false;
 let music;
-let musicControl;
-let musicIcon;
 
 function initMusicControl() {
-  music = document.getElementById("backgroundMusic");
-  musicControl = document.getElementById("musicControl");
-  musicIcon = document.getElementById("musicIcon");
-
-  if (!music || !musicControl || !musicIcon) {
-    console.warn("Music control elements not found");
-    return;
-  }
-
-  // Set music source
+  // Create audio element
+  music = document.createElement("audio");
+  music.loop = true;
+  music.volume = 0.3;
+  // Replace with your music URL
   music.src = CONFIG.musicUrl;
+  document.body.appendChild(music);
 
-  musicControl.addEventListener("click", toggleMusic);
+  const musicControl = document.getElementById("musicControl");
+  const musicIcon = document.getElementById("musicIcon");
 
-  // Add keyboard support for music control
+  // Try auto-play
+  forceAutoPlay(musicIcon);
+
+  // Toggle music on click
+  musicControl.addEventListener("click", () => {
+    if (isPlaying) {
+      music.pause();
+      musicIcon.textContent = "🎵";
+      isPlaying = false;
+      showToast("Đã tắt nhạc nền");
+    } else {
+      music
+        .play()
+        .then(() => {
+          musicIcon.textContent = "⏸️";
+          isPlaying = true;
+          showToast("Đang phát nhạc nền");
+        })
+        .catch((e) => {
+          console.log("Cannot play music:", e);
+          showToast("Không thể phát nhạc nền");
+        });
+    }
+  });
+
+  // Keyboard support
   musicControl.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      toggleMusic();
+      musicControl.click();
     }
   });
 }
 
-function toggleMusic() {
-  if (!music) return;
+function forceAutoPlay(musicIcon) {
+  // Method 1: Try direct play immediately
+  const playPromise = music.play();
 
-  if (isPlaying) {
-    music.pause();
-    musicIcon.textContent = "🎵";
-    isPlaying = false;
-  } else {
-    music.play().catch((e) => {
-      console.log("Cannot play music:", e);
-      showToast("Không thể phát nhạc nền");
-    });
-    musicIcon.textContent = "⏸️";
-    isPlaying = true;
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        // Auto-play successful
+        isPlaying = true;
+        musicIcon.textContent = "⏸️";
+      })
+      .catch((error) => {
+        // Method 2: Play on FIRST interaction of ANY type
+        const playOnInteraction = () => {
+          music
+            .play()
+            .then(() => {
+              isPlaying = true;
+              musicIcon.textContent = "⏸️";
+            })
+            .catch((e) => console.log("Play error:", e));
+        };
+
+        // Add one-time listeners for any interaction
+        document.addEventListener("click", playOnInteraction, { once: true });
+        document.addEventListener("touchstart", playOnInteraction, {
+          once: true,
+        });
+        document.addEventListener("keydown", playOnInteraction, { once: true });
+        document.addEventListener("scroll", playOnInteraction, {
+          once: true,
+          passive: true,
+        });
+      });
   }
 }
+
+// Music Control (Old - Remove this section)
+const musicControl = document.getElementById("musicControl");
+const musicIcon = document.getElementById("musicIcon");
+
+// Scroll Up Button
+const scrollUpBtn = document.getElementById("scrollUp");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 500) {
+    scrollUpBtn.classList.add("show");
+  } else {
+    scrollUpBtn.classList.remove("show");
+  }
+});
+
+scrollUpBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// // RSVP Form
+// document.getElementById("rsvpForm").addEventListener("submit", function (e) {
+//   e.preventDefault();
+
+//   const formData = {
+//     name: document.getElementById("name").value,
+//     phone: document.getElementById("phone").value,
+//     message: document.getElementById("message").value,
+//     guests: document.getElementById("guests").value,
+//     timestamp: new Date().toISOString(),
+//   };
+
+//   // Save to localStorage
+//   const rsvps = JSON.parse(localStorage.getItem("wedding-rsvps") || "[]");
+//   rsvps.push(formData);
+//   localStorage.setItem("wedding-rsvps", JSON.stringify(rsvps));
+
+//   showToast("✨ Cảm ơn bạn đã xác nhận tham dự! 💕");
+//   this.reset();
+// });
 
 // ===== RSVP FORM =====
 function initRSVPForm() {
@@ -198,52 +185,182 @@ function initRSVPForm() {
   rsvpForm.addEventListener("submit", handleRSVPSubmit);
 }
 
-function handleRSVPSubmit(e) {
+// Toast Notification
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  const toastMessage = document.getElementById("toastMessage");
+  toastMessage.textContent = message;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 3500);
+}
+
+// ===== CẬP NHẬT HÀM XỬ LÝ RSVP =====
+async function handleRSVPSubmit(e) {
   e.preventDefault();
+
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  const originalBtnText = submitBtn.textContent;
+
+  // Disable button và hiển thị loading
+  submitBtn.disabled = true;
+  submitBtn.textContent = "⏳ Đang gửi...";
 
   const formData = new FormData(e.target);
   const rsvpData = {
-    name: formData.get("guestName"),
-    phone: formData.get("guestPhone"),
-    count: formData.get("guestCount"),
-    message: formData.get("message"),
+    name: formData.get("name")?.trim(),
+    phone: formData.get("phone")?.trim(),
+    count: formData.get("guests"),
+    message: formData.get("message")?.trim(),
     timestamp: new Date().toISOString(),
+    ip: await getUserIP(),
   };
 
   // Validate required fields
   if (!rsvpData.name || !rsvpData.phone) {
-    showToast("Vui lòng điền đầy đủ thông tin bắt buộc!");
+    showToast("Vui lòng điền đầy đủ thông tin bắt buộc!", "error");
+    resetSubmitButton(submitBtn, originalBtnText);
     return;
   }
 
-  // Save to localStorage (replace with backend call if needed)
+  // Validate phone number
+  const phoneRegex = /^[0-9]{10,11}$/;
+  if (!phoneRegex.test(rsvpData.phone)) {
+    showToast("Số điện thoại không hợp lệ!", "error");
+    resetSubmitButton(submitBtn, originalBtnText);
+    return;
+  }
+
+  try {
+    // Gửi đến Google Sheets
+    const success = await sendToGoogleSheets(rsvpData);
+
+    if (success) {
+      // Lưu backup vào localStorage
+      saveToLocalStorage(rsvpData);
+
+      showToast("✅ Cảm ơn bạn đã xác nhận tham dự!", "success");
+      e.target.reset();
+
+      // Analytics tracking (optional)
+      trackRSVPSubmission(rsvpData);
+    } else {
+      throw new Error("Không thể gửi đến Google Sheets");
+    }
+  } catch (error) {
+    console.error("RSVP submission error:", error);
+
+    if (CONFIG.offlineMode) {
+      // Lưu vào localStorage nếu offline
+      saveToLocalStorage(rsvpData);
+      showToast("⚠️ Đã lưu tạm thời. Sẽ đồng bộ khi có mạng!", "warning");
+      e.target.reset();
+    } else {
+      showToast("❌ Có lỗi xảy ra, vui lòng thử lại!", "error");
+    }
+  } finally {
+    resetSubmitButton(submitBtn, originalBtnText);
+  }
+}
+
+// ===== FUNCTION GỬI DỮ LIỆU ĐẾN GOOGLE SHEETS =====
+async function sendToGoogleSheets(data) {
+  try {
+    const response = await fetch(CONFIG.googleSheetsUrl, {
+      method: "POST",
+      mode: "no-cors", // Important for Google Apps Script
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    // no-cors mode không trả về response, assume success
+    return true;
+  } catch (error) {
+    console.error("Google Sheets error:", error);
+
+    // Fallback: thử gửi qua GET method
+    try {
+      const params = new URLSearchParams({
+        name: data.name,
+        phone: data.phone,
+        count: data.count,
+        message: data.message,
+        timestamp: data.timestamp,
+      });
+
+      await fetch(`${CONFIG.googleSheetsUrl}?${params}`, {
+        method: "GET",
+        mode: "no-cors",
+      });
+
+      return true;
+    } catch (fallbackError) {
+      console.error("Fallback method failed:", fallbackError);
+      return false;
+    }
+  }
+}
+
+// ===== FUNCTION LƯU VÀO LOCALSTORAGE =====
+function saveToLocalStorage(data) {
   try {
     const existingRSVPs = JSON.parse(
       localStorage.getItem("wedding-rsvps") || "[]"
     );
-    existingRSVPs.push(rsvpData);
+    existingRSVPs.push({
+      ...data,
+      synced: false,
+      localId: Date.now(),
+    });
     localStorage.setItem("wedding-rsvps", JSON.stringify(existingRSVPs));
-
-    // Show success message
-    showToast("Cảm ơn bạn đã xác nhận tham dự!");
-
-    // Reset form
-    e.target.reset();
   } catch (error) {
-    console.error("Error saving RSVP:", error);
-    showToast("Có lỗi xảy ra, vui lòng thử lại!");
+    console.error("localStorage save error:", error);
   }
 }
 
-// ===== TOAST NOTIFICATION =====
-function showToast(message) {
+// ===== FUNCTION LẤY IP ADDRESS =====
+async function getUserIP() {
+  try {
+    const response = await fetch("https://api.ipify.org?format=json");
+    const data = await response.json();
+
+    return data.ip;
+  } catch (error) {
+    return "Unknown";
+  }
+}
+
+// ===== FUNCTION RESET NÚT SUBMIT =====
+function resetSubmitButton(button, originalText) {
+  button.disabled = false;
+  button.textContent = originalText;
+}
+
+// ===== CẬP NHẬT FUNCTION TOAST VỚI LOẠI THÔNG BÁO =====
+function showToast(message, type = "success") {
   const toast = document.getElementById("toast");
   const toastMessage = document.getElementById("toastMessage");
 
   if (!toast || !toastMessage) {
-    console.warn("Toast elements not found");
-    alert(message); // Fallback to alert
+    alert(message);
     return;
+  }
+
+  // Xóa class cũ
+  toast.className = "toast";
+
+  // Thêm class theo loại
+  switch (type) {
+    case "success":
+      toast.classList.add("toast-success");
+      break;
+    case "error":
+      toast.classList.add("toast-error");
+      break;
+    case "warning":
+      toast.classList.add("toast-warning");
+      break;
   }
 
   toastMessage.textContent = message;
@@ -251,457 +368,339 @@ function showToast(message) {
 
   setTimeout(() => {
     toast.classList.remove("show");
-  }, 3000);
-}
-
-// ===== LAZY LOADING FOR IMAGES =====
-function initLazyLoading() {
-  if ("loading" in HTMLImageElement.prototype) {
-    // Browser supports lazy loading natively
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    images.forEach((img) => {
-      img.src = img.src;
-    });
-  } else {
-    // Fallback for browsers that don't support lazy loading
-    const script = document.createElement("script");
-    script.src =
-      "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js";
-    document.body.appendChild(script);
-  }
-}
-
-// ===== SMOOTH SCROLLING =====
-function initSmoothScrolling() {
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    });
-  });
-}
-
-// ===== ACCESSIBILITY ENHANCEMENTS =====
-function initAccessibility() {
-  // Add focus indicators for better accessibility
-  const focusableElements = document.querySelectorAll(
-    "button, input, select, textarea, a[href]"
-  );
-  focusableElements.forEach((element) => {
-    element.addEventListener("focus", () => {
-      element.style.outline = "3px solid var(--primary-pink)";
-    });
-    element.addEventListener("blur", () => {
-      element.style.outline = "";
-    });
-  });
-}
-
-// ===== UTILITY FUNCTIONS =====
-function getRSVPData() {
-  try {
-    return JSON.parse(localStorage.getItem("wedding-rsvps") || "[]");
-  } catch (error) {
-    console.error("Error getting RSVP data:", error);
-    return [];
-  }
-}
-
-function clearRSVPData() {
-  try {
-    localStorage.removeItem("wedding-rsvps");
-    showToast("Đã xóa dữ liệu RSVP");
-  } catch (error) {
-    console.error("Error clearing RSVP data:", error);
-    showToast("Có lỗi xảy ra khi xóa dữ liệu");
-  }
-}
-
-// ===== DYNAMIC TITLE UPDATE =====
-function initTitle() {
-  const titleElement = document.getElementById("brideGroomTitle");
-  if (titleElement) {
-    titleElement.textContent = CONFIG.brideGroomTitle;
-  }
-}
-
-// ===== CẬP NHẬT HÀM XỬ LÝ RSVP =====
-async function handleRSVPSubmit(e) {
-    e.preventDefault();
-    
-    const submitBtn = e.target.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.textContent;
-    
-    // Disable button và hiển thị loading
-    submitBtn.disabled = true;
-    submitBtn.textContent = '⏳ Đang gửi...';
-    
-    const formData = new FormData(e.target);
-    const rsvpData = {
-        name: formData.get('guestName')?.trim(),
-        phone: formData.get('guestPhone')?.trim(),
-        count: formData.get('guestCount'),
-        message: formData.get('message')?.trim(),
-        timestamp: new Date().toISOString(),
-        ip: await getUserIP()
-    };
-
-    // Validate required fields
-    if (!rsvpData.name || !rsvpData.phone) {
-        showToast('Vui lòng điền đầy đủ thông tin bắt buộc!', 'error');
-        resetSubmitButton(submitBtn, originalBtnText);
-        return;
-    }
-
-    // Validate phone number
-    const phoneRegex = /^[0-9]{10,11}$/;
-    if (!phoneRegex.test(rsvpData.phone)) {
-        showToast('Số điện thoại không hợp lệ!', 'error');
-        resetSubmitButton(submitBtn, originalBtnText);
-        return;
-    }
-
-    try {
-        // Gửi đến Google Sheets
-        console.log(rsvpData)
-        const success = await sendToGoogleSheets(rsvpData);
-        
-        if (success) {
-            // Lưu backup vào localStorage
-            saveToLocalStorage(rsvpData);
-            
-            showToast('✅ Cảm ơn bạn đã xác nhận tham dự!', 'success');
-            e.target.reset();
-            
-            // Analytics tracking (optional)
-            trackRSVPSubmission(rsvpData);
-            
-        } else {
-            throw new Error('Không thể gửi đến Google Sheets');
-        }
-        
-    } catch (error) {
-        console.error('RSVP submission error:', error);
-        
-        if (CONFIG.offlineMode) {
-            // Lưu vào localStorage nếu offline
-            saveToLocalStorage(rsvpData);
-            showToast('⚠️ Đã lưu tạm thời. Sẽ đồng bộ khi có mạng!', 'warning');
-            e.target.reset();
-        } else {
-            showToast('❌ Có lỗi xảy ra, vui lòng thử lại!', 'error');
-        }
-    } finally {
-        resetSubmitButton(submitBtn, originalBtnText);
-    }
-}
-
-// ===== FUNCTION GỬI DỮ LIỆU ĐẾN GOOGLE SHEETS =====
-async function sendToGoogleSheets(data) {
-    try {
-        const response = await fetch(CONFIG.googleSheetsUrl, {
-            method: 'POST',
-            mode: 'no-cors', // Important for Google Apps Script
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        });
-
-        // no-cors mode không trả về response, assume success
-        return true;
-        
-    } catch (error) {
-        console.error('Google Sheets error:', error);
-        
-        // Fallback: thử gửi qua GET method
-        try {
-            const params = new URLSearchParams({
-                name: data.name,
-                phone: data.phone,
-                count: data.count,
-                message: data.message,
-                timestamp: data.timestamp
-            });
-            
-            await fetch(`${CONFIG.googleSheetsUrl}?${params}`, {
-                method: 'GET',
-                mode: 'no-cors'
-            });
-            
-            return true;
-        } catch (fallbackError) {
-            console.error('Fallback method failed:', fallbackError);
-            return false;
-        }
-    }
-}
-
-// ===== FUNCTION LƯU VÀO LOCALSTORAGE =====
-function saveToLocalStorage(data) {
-    try {
-        const existingRSVPs = JSON.parse(localStorage.getItem('wedding-rsvps') || '[]');
-        existingRSVPs.push({
-            ...data,
-            synced: false,
-            localId: Date.now()
-        });
-        localStorage.setItem('wedding-rsvps', JSON.stringify(existingRSVPs));
-    } catch (error) {
-        console.error('localStorage save error:', error);
-    }
-}
-
-// ===== FUNCTION LẤY IP ADDRESS =====
-async function getUserIP() {
-    try {
-        const response = await fetch('https://api.ipify.org?format=json');
-        const data = await response.json();
-        
-        return data.ip;
-    } catch (error) {
-        return 'Unknown';
-    }
-}
-
-// ===== FUNCTION RESET NÚT SUBMIT =====
-function resetSubmitButton(button, originalText) {
-    button.disabled = false;
-    button.textContent = originalText;
-}
-
-// ===== CẬP NHẬT FUNCTION TOAST VỚI LOẠI THÔNG BÁO =====
-function showToast(message, type = 'success') {
-    const toast = document.getElementById('toast');
-    const toastMessage = document.getElementById('toastMessage');
-    
-    if (!toast || !toastMessage) {
-        alert(message);
-        return;
-    }
-    
-    // Xóa class cũ
-    toast.className = 'toast';
-    
-    // Thêm class theo loại
-    switch(type) {
-        case 'success':
-            toast.classList.add('toast-success');
-            break;
-        case 'error':
-            toast.classList.add('toast-error');
-            break;
-        case 'warning':
-            toast.classList.add('toast-warning');
-            break;
-    }
-    
-    toastMessage.textContent = message;
-    toast.classList.add('show');
-    
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 4000);
+  }, 4000);
 }
 
 // ===== FUNCTION ĐỒNG BỘ DỮ LIỆU OFFLINE =====
 async function syncOfflineData() {
-    try {
-        const offlineData = JSON.parse(localStorage.getItem('wedding-rsvps') || '[]');
-        const unsyncedData = offlineData.filter(item => !item.synced);
-        
-        if (unsyncedData.length === 0) return;
-        
-        let syncedCount = 0;
-        
-        for (const data of unsyncedData) {
-            const success = await sendToGoogleSheets(data);
-            if (success) {
-                // Đánh dấu đã sync
-                const index = offlineData.findIndex(item => item.localId === data.localId);
-                if (index !== -1) {
-                    offlineData[index].synced = true;
-                }
-                syncedCount++;
-            }
+  try {
+    const offlineData = JSON.parse(
+      localStorage.getItem("wedding-rsvps") || "[]"
+    );
+    const unsyncedData = offlineData.filter((item) => !item.synced);
+
+    if (unsyncedData.length === 0) return;
+
+    let syncedCount = 0;
+
+    for (const data of unsyncedData) {
+      const success = await sendToGoogleSheets(data);
+      if (success) {
+        // Đánh dấu đã sync
+        const index = offlineData.findIndex(
+          (item) => item.localId === data.localId
+        );
+        if (index !== -1) {
+          offlineData[index].synced = true;
         }
-        
-        if (syncedCount > 0) {
-            localStorage.setItem('wedding-rsvps', JSON.stringify(offlineData));
-            showToast(`🔄 Đã đồng bộ ${syncedCount} dữ liệu offline!`, 'success');
-        }
-        
-    } catch (error) {
-        console.error('Sync offline data error:', error);
+        syncedCount++;
+      }
     }
+
+    if (syncedCount > 0) {
+      localStorage.setItem("wedding-rsvps", JSON.stringify(offlineData));
+      showToast(`🔄 Đã đồng bộ ${syncedCount} dữ liệu offline!`, "success");
+    }
+  } catch (error) {
+    console.error("Sync offline data error:", error);
+  }
 }
 
 // ===== FUNCTION TRACKING ANALYTICS (TÙY CHỌN) =====
 function trackRSVPSubmission(data) {
-    // Google Analytics 4 (nếu có)
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'rsvp_submit', {
-            'custom_parameter_1': 'wedding_rsvp',
-            'value': 1
-        });
-    }
-    
-    // Facebook Pixel (nếu có)
-    if (typeof fbq !== 'undefined') {
-        fbq('track', 'SubmitApplication');
-    }
-}
-
-// ===== FUNCTION EXPORT DỮ LIỆU =====
-function exportRSVPData() {
-    try {
-        const data = JSON.parse(localStorage.getItem('wedding-rsvps') || '[]');
-        const csvContent = convertToCSV(data);
-        downloadCSV(csvContent, 'wedding-rsvp-data.csv');
-    } catch (error) {
-        console.error('Export error:', error);
-        showToast('Lỗi khi xuất dữ liệu!', 'error');
-    }
-}
-
-function convertToCSV(data) {
-    const headers = ['Thời gian', 'Họ tên', 'Số điện thoại', 'Số người', 'Lời chúc', 'Đã đồng bộ'];
-    const rows = data.map(item => [
-        new Date(item.timestamp).toLocaleString('vi-VN'),
-        item.name,
-        item.phone,
-        item.count,
-        item.message || '',
-        item.synced ? 'Có' : 'Chưa'
-    ]);
-    
-    const csvContent = [headers, ...rows]
-        .map(row => row.map(field => `"${field}"`).join(','))
-        .join('\n');
-        
-    return csvContent;
-}
-
-function downloadCSV(content, filename) {
-    const blob = new Blob(['\uFEFF' + content], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(blob);
-    link.setAttribute('href', url);
-    link.setAttribute('download', filename);
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-
-// ===== CLEANUP ON PAGE UNLOAD =====
-window.addEventListener("beforeunload", () => {
-  if (countdownInterval) {
-    clearInterval(countdownInterval);
-  }
-  if (heartsInterval) {
-    clearInterval(heartsInterval);
-  }
-});
-
-// ===== EXPORT FOR DEBUGGING =====
-window.WeddingApp = {
-  CONFIG,
-  getRSVPData,
-  clearRSVPData,
-  showToast,
-};
-
-// ===== AUTO SYNC KHI CÓ INTERNET =====
-window.addEventListener('online', () => {
-    console.log('Connection restored, syncing offline data...');
-    setTimeout(syncOfflineData, 2000);
-});
-
-// ===== DEBUG FUNCTIONS =====
-window.WeddingRSVP = {
-    exportData: exportRSVPData,
-    syncOffline: syncOfflineData,
-    clearData: () => {
-        localStorage.removeItem('wedding-rsvps');
-        showToast('Đã xóa dữ liệu local!', 'success');
-    },
-    viewData: () => {
-        console.table(JSON.parse(localStorage.getItem('wedding-rsvps') || '[]'));
-    }
-};
-
-// ===== DISABLE RIGHT-CLICK =====
-document.addEventListener("contextmenu", (e) => {
-  e.preventDefault();
-});
-
-// ===== ALBUM MODAL FUNCTIONALITY =====
-document.addEventListener("DOMContentLoaded", function () {
-  const albumItems = document.querySelectorAll(".album-item img");
-  const modal = document.getElementById("albumModal");
-  const modalImg = document.getElementById("modalImage");
-  const modalCaption = document.getElementById("modalCaption");
-  const closeBtn = document.querySelector(".album-modal .close");
-  const prevBtn = document.querySelector(".album-modal .prev");
-  const nextBtn = document.querySelector(".album-modal .next");
-
-  let currentIndex = 0;
-
-  // Hàm hiển thị ảnh trong modal
-  function showImage(index) {
-    if (index < 0) index = albumItems.length - 1;
-    if (index >= albumItems.length) index = 0;
-    currentIndex = index;
-    modalImg.src = albumItems[currentIndex].src;
-    modalCaption.innerText = albumItems[currentIndex].alt;
-  }
-
-  // Click ảnh trong album
-  albumItems.forEach((img, i) => {
-    img.addEventListener("click", () => {
-      modal.style.display = "block";
-      showImage(i);
+  // Google Analytics 4 (nếu có)
+  if (typeof gtag !== "undefined") {
+    gtag("event", "rsvp_submit", {
+      custom_parameter_1: "wedding_rsvp",
+      value: 1,
     });
+  }
+
+  // Facebook Pixel (nếu có)
+  if (typeof fbq !== "undefined") {
+    fbq("track", "SubmitApplication");
+  }
+}
+
+// Smooth Scroll for Links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+});
+
+// Initialize
+document.addEventListener("DOMContentLoaded", () => {
+  createFloatingHearts();
+  initMusicControl();
+  initRSVPForm();
+
+  // Add entrance animations
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = "fadeInUp 0.8s ease-out forwards";
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document
+    .querySelectorAll(".profile-card, .calendar-container")
+    .forEach((el) => {
+      observer.observe(el);
+    });
+});
+
+// // Album Modal Functionality
+// const albumItems = document.querySelectorAll(".album-item");
+// const modal = document.getElementById("albumModal");
+// const modalImage = document.getElementById("modalImage");
+// const modalCaption = document.getElementById("modalCaption");
+// const modalClose = document.querySelector(".modal-close");
+// const modalPrev = document.querySelector(".modal-prev");
+// const modalNext = document.querySelector(".modal-next");
+
+// const albumData = [
+//   {
+//     src: "./assets/images/578792686_4145088262381125_8706124705216850285_n.jpg",
+//     caption: "",
+//   },
+//   {
+//     src: "./assets/images/578792686_4145088262381125_8706124705216850285_n.jpg",
+//     caption: "",
+//   },
+//   {
+//     src: "./assets/images/578792686_4145088262381125_8706124705216850285_n.jpg",
+//     caption: "",
+//   },
+//   {
+//     src: "./assets/images/578792686_4145088262381125_8706124705216850285_n.jpg",
+//     caption: "",
+//   },
+//   {
+//     src: "./assets/images/578792686_4145088262381125_8706124705216850285_n.jpg",
+//     caption: "",
+//   },
+//   {
+//     src: "./assets/images/578792686_4145088262381125_8706124705216850285_n.jpg",
+//     caption: "",
+//   },
+//   {
+//     src: "./assets/images/578792686_4145088262381125_8706124705216850285_n.jpg",
+//     caption: "",
+//   },
+//   {
+//     src: "./assets/images/578792686_4145088262381125_8706124705216850285_n.jpg",
+//     caption: "",
+//   },
+// ];
+
+// let currentIndex = 0;
+
+// function showModal(index) {
+//   currentIndex = index;
+
+//   // Get the clicked image element
+//   const clickedItem = albumItems[index];
+//   const clickedImg = clickedItem.querySelector("img.album-photo");
+
+//   // Create new image element for modal
+//   const img = document.createElement("img");
+//   img.src = clickedImg.src;
+//   img.alt = clickedImg.alt;
+//   img.className = "modal-image";
+
+//   // Clear and add to modal
+//   modalImage.innerHTML = "";
+//   modalImage.appendChild(img);
+
+//   // Update caption
+//   const captionText = clickedItem.querySelector(".album-overlay p");
+//   modalCaption.textContent = captionText
+//     ? captionText.textContent
+//     : albumData[index].caption;
+
+//   modal.classList.add("active");
+//   document.body.style.overflow = "hidden";
+// }
+
+// function closeModal() {
+//   modal.classList.remove("active");
+//   document.body.style.overflow = "auto";
+// }
+
+// function showNext() {
+//   currentIndex = (currentIndex + 1) % albumData.length;
+//   const img = modalImage.querySelector("img");
+//   const imgalbumphoto = modalImage.querySelector("img.album-photo");
+//   img.style.opacity = "0";
+//   setTimeout(() => {
+//     img.src = albumData[currentIndex].src;
+//     img.alt = albumData[currentIndex].caption;
+//     modalCaption.textContent = albumData[currentIndex].caption;
+//     img.style.opacity = "1";
+//   }, 100);
+// }
+
+// function showPrev() {
+//   currentIndex = (currentIndex - 1 + albumData.length) % albumData.length;
+//   const img = modalImage.querySelector("img");
+//   img.style.opacity = "0";
+//   setTimeout(() => {
+//     img.src = albumData[currentIndex].src;
+//     img.alt = albumData[currentIndex].caption;
+//     modalCaption.textContent = albumData[currentIndex].caption;
+//     img.style.opacity = "1";
+//   }, 200);
+// }
+
+// albumItems.forEach((item, index) => {
+//   item.addEventListener("click", () => showModal(index));
+// });
+
+// modalClose.addEventListener("click", closeModal);
+// modalNext.addEventListener("click", showNext);
+// modalPrev.addEventListener("click", showPrev);
+
+// // Close modal on background click
+// modal.addEventListener("click", (e) => {
+//   if (e.target === modal) closeModal();
+// });
+
+// // Keyboard navigation
+// document.addEventListener("keydown", (e) => {
+//   if (modal.classList.contains("active")) {
+//     if (e.key === "Escape") closeModal();
+//     if (e.key === "ArrowRight") showNext();
+//     if (e.key === "ArrowLeft") showPrev();
+//   }
+// });
+
+// // Image fade transition
+// const style = document.createElement("style");
+// style.textContent = `
+//             .modal-image img {
+//                 transition: opacity 0.3s ease;
+//             }
+//         `;
+// document.head.appendChild(style);
+
+// Prevent right-click (optional)
+document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+// Image slider
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".slide");
+  const dotsContainer = document.querySelector(".dots");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+
+  let index = 0;
+  let interval;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => goToSlide(i));
+    dotsContainer.appendChild(dot);
   });
 
-  // Đóng modal
-  closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
+  const dots = document.querySelectorAll(".dot");
 
-  // Next/Prev
+  function showSlide(i) {
+    slides.forEach((slide) => slide.classList.remove("active"));
+    dots.forEach((dot) => dot.classList.remove("active"));
+
+    slides[i].classList.add("active");
+    dots[i].classList.add("active");
+  }
+
+  function nextSlide() {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }
+
+  function prevSlide() {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+  }
+
+  function goToSlide(i) {
+    index = i;
+    showSlide(index);
+    restartAutoPlay();
+  }
+
+  // Auto play
+  function startAutoPlay() {
+    interval = setInterval(nextSlide, 3000);
+  }
+
+  function stopAutoPlay() {
+    clearInterval(interval);
+  }
+
+  function restartAutoPlay() {
+    stopAutoPlay();
+    startAutoPlay();
+  }
+
+  // Button events
   nextBtn.addEventListener("click", () => {
-    showImage(currentIndex + 1);
+    nextSlide();
+    restartAutoPlay();
   });
 
   prevBtn.addEventListener("click", () => {
-    showImage(currentIndex - 1);
+    prevSlide();
+    restartAutoPlay();
   });
 
-  // Đóng khi click ra ngoài
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-    }
-  });
-
-  // Dùng phím mũi tên trái/phải
-  document.addEventListener("keydown", (e) => {
-    if (modal.style.display === "block") {
-      if (e.key === "ArrowRight") showImage(currentIndex + 1);
-      if (e.key === "ArrowLeft") showImage(currentIndex - 1);
-      if (e.key === "Escape") modal.style.display = "none";
-    }
-  });
+  // Start slider
+  startAutoPlay();
 });
+
+// ===== RECENT EDITS IN assets/css/styles.css =====
+const popup = document.getElementById("invitePopup");
+const overlay = document.getElementById("popupOverlay");
+const closeBtn = document.getElementById("closePopup");
+
+function closePopup() {
+  popup.classList.remove("show");
+  document.getElementById("envelope").classList.remove("open");
+}
+
+closeBtn.addEventListener("click", closePopup);
+
+overlay.addEventListener("click", closePopup);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closePopup();
+  }
+});
+
+// lock scroll
+// document.body.style.overflow = "hidden";
+// document.body.style.overflow = "";
+
+// envelope.addEventListener("click", () => {
+//   envelope.classList.add("open");
+
+//   setTimeout(() => {
+//     popup.classList.remove("show");
+//     document.body.classList.add("entered");
+//   }, 800);
+// });
 
 
 
