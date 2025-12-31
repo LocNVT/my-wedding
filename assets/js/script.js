@@ -223,12 +223,12 @@ async function handleRSVPSubmit(e) {
   }
 
   // Validate phone number
-  const phoneRegex = /^[0-9]{10,11}$/;
-  if (!phoneRegex.test(rsvpData.phone)) {
-    showToast("Số điện thoại không hợp lệ!", "error");
-    resetSubmitButton(submitBtn, originalBtnText);
-    return;
-  }
+  // const phoneRegex = /^[0-9]{10,11}$/;
+  // if (!phoneRegex.test(rsvpData.phone)) {
+  //   showToast("Số điện thoại không hợp lệ!", "error");
+  //   resetSubmitButton(submitBtn, originalBtnText);
+  //   return;
+  // }
 
   try {
     // Gửi đến Google Sheets
