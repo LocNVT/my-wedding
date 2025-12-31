@@ -79,11 +79,12 @@ body {
   background-repeat: no-repeat;
   color: white;
   animation: fadeIn 1.5s ease-in;
+  /* aspect-ratio: 3 / 1.5; */
 }
 
 .hero-banner h1 {
   font-family: "Dancing Script", cursive;
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-size: clamp(2.5rem, 8vw, 10rem);
   font-weight: 700;
   color: var(--warm-beige);
   margin-bottom: 20px;
@@ -91,7 +92,9 @@ body {
 }
 
 .hero-banner .tagline {
-  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(1rem, 3vw, 5rem);
+  text-align: center;
   color: var(--pink);
   font-style: italic;
   margin-bottom: 40px;
@@ -261,7 +264,7 @@ body {
 
 .save-the-date h2 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1rem, 5vw, 3.5rem);
   color: white;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -290,7 +293,8 @@ body {
   color: #666;
   margin: 40px 0;
   line-height: 1.9;
-  font-size: 1.05rem;
+  /* font-size: 1.05rem; */
+  font-size: clamp(0.5rem, 3vw, 1.4rem);
 }
 
 /* Couple Names */
@@ -301,7 +305,7 @@ body {
 
 .couple-names h3 {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-size: clamp(1.5rem, 5vw, 3.8rem);
   color: var(--dark);
   font-weight: 600;
   margin: 20px 0;
@@ -416,7 +420,8 @@ body {
 
 .venue-info p {
   margin: 8px 0;
-  font-size: 1rem;
+  /* font-size: 1rem; */
+  font-size: clamp(0.5rem, 5vw, 2rem);
   line-height: 1.7;
   color: #666;
 }
@@ -1631,6 +1636,20 @@ body {
 
   .venue-info {
     padding: 20px;
+  }
+
+  .parent-label {
+    font-size: 0.95rem;
+  }
+
+  .parent-name {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 368px) {
+  .parent-name {
+    font-size: 1.2rem;
   }
 }
 
