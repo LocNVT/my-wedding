@@ -702,5 +702,15 @@ document.addEventListener("keydown", (e) => {
 //   }, 800);
 // });
 
+function toggleImage(card) {
+    const img = card.querySelector('img');
+    const currentSrc = img.src;
+    const altSrc = img.getAttribute('data-alt-src');
+    
+    // Swap the images
+    img.src = altSrc;
+    img.setAttribute('data-alt-src', currentSrc);
+}
+
 
 
